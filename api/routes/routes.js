@@ -5,6 +5,9 @@ module.exports = function(app) {
 		userHandlers = require('../controllers/userController.js');
 
 	// 	Zabbix
+	app.route('/api/item-information')
+		.get(userHandlers.loginRequired, zabbixDataHandlers.item_information);
+
 	app.route('/api/item-history')
 		.get(userHandlers.loginRequired, zabbixDataHandlers.item_history);
 
