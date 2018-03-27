@@ -18,16 +18,16 @@ exports.item_history = function(req, res) {
         "output": "extend",
         "history": 0, // Existem alguns itens que necessitam de outros valores em history, ainda é necessario descobrir como modificar esse campo dinamicamente
         /*
-        History object types to return.
+            History object types to return.
 
-        Possible values:
-        0 - numeric float;
-        1 - character;
-        2 - log;
-        3 - numeric unsigned;
-        4 - text.
-        
-        Default: 3.
+            Possible values:
+            0 - numeric float;
+            1 - character;
+            2 - log;
+            3 - numeric unsigned;
+            4 - text.
+            
+            Default: 3.
         */
         "itemids": req.query.itemid,
         "hostids": req.query.hostid,
