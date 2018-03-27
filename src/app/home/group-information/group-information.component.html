@@ -1,0 +1,12 @@
+<div class="row" *ngIf="groupList">
+  <div class="col s12 m7">
+    <div class="card" *ngFor="let group of groupList">
+      <div class="card-content">
+        <span>Group name: {{group.name}}</span>
+        <br>
+        <span>Group ID: {{group.groupid}}</span>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

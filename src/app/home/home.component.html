@@ -1,0 +1,39 @@
+<body>
+  <main>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">
+          <i class="material-icons">cloud</i>MigrationEvals
+        </a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li routerLinkActive="active"><a routerLink='user-detail' class="active">User Information</a></li>
+          <li routerLinkActive="active"><a routerLink='host-information' >Host Information</a></li>
+          <li routerLinkActive="active"><a routerLink='group-information'>Group Information</a></li>
+
+          <li><a (click)="Logout()">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <router-outlet></router-outlet>
+
+  </main>
+  
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">MigrationEvals</h5>
+          <p class="grey-text text-lighten-4">Sistema de monitoramento de desempenho de migração de maquinas virtuais</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2018 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>
+</body>
