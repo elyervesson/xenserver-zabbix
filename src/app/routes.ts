@@ -10,6 +10,7 @@ import { HostInformationComponent } from './home/host-information/host-informati
 import { GroupInformationComponent } from './home/group-information/group-information.component';
 import { ItemsHostInformationComponent } from './home/items-host-information/items-host-information.component';
 import { ItemHistoryComponent } from './home/item-history/item-history.component';
+import { ItemGraphicComponent } from './home/item-graphic/item-graphic.component';
 
 export const appRoutes: Routes = [
     { 
@@ -20,7 +21,8 @@ export const appRoutes: Routes = [
             { path: 'host-information', component: HostInformationComponent },
             { path: 'group-information', component: GroupInformationComponent },
             { path: 'items-host-information/:hostid', component: ItemsHostInformationComponent },
-            { path: 'item-history/:itemid/:hostid', component: ItemHistoryComponent }
+            { path: 'item-history/:itemid/:hostid', component: ItemHistoryComponent },
+            { path: 'item-graphic/:itemid/:hostid', component: ItemGraphicComponent }
         ],
         canActivate:[AuthGuard] 
     },

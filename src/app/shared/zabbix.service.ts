@@ -22,4 +22,9 @@ export class ZabbixService {
   getItemHistory(itemId, hostId){
     return this.http.get(this.rootUrl + '/api/item-history?itemid='+ itemId +'&hostid='+ hostId + '&limit=10');
   }
+
+  getItemInformation(itemId){
+    return this.http.get(this.rootUrl + '/api/item-information?itemid=' + itemId);
+  }
+
 }
