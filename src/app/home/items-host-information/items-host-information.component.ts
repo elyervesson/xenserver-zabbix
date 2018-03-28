@@ -26,4 +26,7 @@ export class ItemsHostInformationComponent implements OnInit {
     this.router.navigate(['/home/item-history/' + itemId + "/" + this.hostId]);
   }
   
+  back() {
+    this.router.navigate(['/home/host-information']);
+  }
 }

@@ -1,6 +1,6 @@
 <div class="row" *ngIf="hostList">
   <div class="col s12 m7">
-    <div class="card" *ngFor="let host of hostList" (click)=showItems(host.hostid)>
+    <div class="card" *ngFor="let host of hostList" >
       <div class="card-content">
         <span>Host name: {{host.host}}</span>
         <br>
@@ -10,6 +10,9 @@
           <span>Interface ID: {{interface.interfaceid}} IP: {{interface.ip}} </span>
           <br>
         </div>
+      </div>
+      <div class="card-action">
+        <a (click)=showItems(host.hostid)>Exibir itens</a>
       </div>
     </div>
   </div>

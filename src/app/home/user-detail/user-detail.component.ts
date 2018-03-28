@@ -15,7 +15,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserClaims().subscribe((data: any) => {
       this.userClaims = data;
-      this.userClaims.loggedOn = new Date(this.userClaims.iat);
+      this.userClaims.loggedOn = new Date(this.userClaims.iat*1000);
     });
   }
 }

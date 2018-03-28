@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { ZabbixService } from './../../shared/zabbix.service';
 
@@ -14,7 +14,7 @@ export class ItemHistoryComponent implements OnInit {
 
   itemList: any;
 
-  constructor(private zabbixService: ZabbixService, private route: ActivatedRoute) {
+  constructor(private zabbixService: ZabbixService, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe( params => {
       this.hostId = params.hostid;
       this.itemId = params.itemid;
@@ -31,4 +31,7 @@ export class ItemHistoryComponent implements OnInit {
     })
   }
 
+  back() {
+    this.router.navigate(['/home/items-host-information/'+ this.hostId]);
+  }
 }
