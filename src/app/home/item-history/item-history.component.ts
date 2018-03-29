@@ -22,7 +22,7 @@ export class ItemHistoryComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.zabbixService.getItemHistory(this.itemId, this.hostId).subscribe( (data: any) => {
+      this.zabbixService.getItemHistory(this.itemId, this.hostId, 10).subscribe( (data: any) => {
         this.itemList = data.result;
 
         this.itemList.forEach(medicao => {

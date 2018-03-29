@@ -19,8 +19,8 @@ export class ZabbixService {
     return this.http.get(this.rootUrl + '/api/itens-host?hostid='+ hostId);
   }
 
-  getItemHistory(itemId, hostId){
-    return this.http.get(this.rootUrl + '/api/item-history?itemid='+ itemId +'&hostid='+ hostId + '&limit=10');
+  getItemHistory(itemId, hostId, limit){
+    return this.http.get(this.rootUrl + '/api/item-history?itemid='+ itemId +'&hostid='+ hostId + '&limit=' + limit);
   }
 
   getItemInformation(itemId){
