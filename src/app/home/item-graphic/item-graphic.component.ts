@@ -29,7 +29,7 @@ export class ItemGraphicComponent implements OnInit {
       this.itemId = params.itemid;
     });
 
-    this.range = 10;
+    this.range = 15;
   }
   
   ngOnInit() {
@@ -45,7 +45,7 @@ export class ItemGraphicComponent implements OnInit {
           let time = new Date(medicao.clock*1000);
   
           this.itemList[0].values.push({
-            label: time.getHours() + "h:" + time.getMinutes() + "m:" + time.getSeconds() + "s",
+            label: time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds(),
             value: medicao.value
           })
         });
@@ -62,22 +62,22 @@ export class ItemGraphicComponent implements OnInit {
         margin : {
           top: 20,
           right: 20,
-          bottom: 50,
+          bottom: 100,
           left: 55
         },
         x: function(d){return d.label;},
         y: function(d){return d.value;},
+        staggerLabels: true,
+        tooltips: false,
         showValues: true,
-        valueFormat: function(d){
-          return d3.format(',.4f')(d);
-        },
         duration: 500,
         xAxis: {
-          axisLabel: 'Horário de medição'
+          axisLabel: 'HORÁRIO DA MEDIÇÃO',
+          axisLabelDistance: -5
         },
         yAxis: {
-          axisLabel: "Valor coletado",
-          axisLabelDistance: -10
+          axisLabel: "VALOR COLETADO",
+          axisLabelDistance: -20
         }
       }
     }
@@ -96,7 +96,7 @@ export class ItemGraphicComponent implements OnInit {
         let time = new Date(medicao.clock*1000);
 
         this.itemList[0].values.push({
-          label: time.getHours() + "h:" + time.getMinutes() + "m:" + time.getSeconds() + "s",
+          label: time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds(),
           value: medicao.value
         })
       });

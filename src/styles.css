@@ -34,3 +34,7 @@ div.error-message i{
 .tabs .tab a.active{
     background-color: #fff !important;
 }
+
+.nvd3 text {
+    font: normal 10px sans-serif !important;
+}

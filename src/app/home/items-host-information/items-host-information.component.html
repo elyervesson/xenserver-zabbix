@@ -1,29 +1,31 @@
-<div class="row">
-  <br>
-  <div class="col s12 m7">
-      <div class="card-panel">
-        <h5 class="black-text text-darken-2">Itens do template zabbix cadastrados para o Host</h5>
-        <a (click)=back()>Retornar aos hosts</a>
+<div class="container">
+  <div class="row">
+    <br>
+    <div class="col s12 m7">
+        <div class="card-panel">
+          <h5 class="black-text text-darken-2">Itens do template zabbix cadastrados para o Host</h5>
+          <a (click)=back()>Retornar aos hosts</a>
+        </div>
       </div>
-    </div>
-</div>
-
-<div class="row" *ngIf="itemsList">
-  <div class="col s12 m7">
-    <div class="card" *ngFor="let item of itemsList">
-      <div class="card-content">
-        <span>Item name: {{item.name}}</span>
-        <br>
-        <span>Item key: {{item.key_}}</span>
-        <br>
-        <span>Item ID: {{item.itemid}}</span>
-        <br>
-        <span>Item description: {{item.description}}</span>
-        <br>
-      </div>
-      <div class="card-action">
-        <a (click)=showItemHistory(item.itemid)>Exibir valores</a>
-        <a (click)=showItemGraphic(item.itemid)>Exibir Grafico</a>
+  </div>
+  
+  <div class="row" *ngIf="itemsList">
+    <div class="col s12 m7">
+      <div class="card" *ngFor="let item of itemsList">
+        <div class="card-content">
+          <span>Item name: {{item.name}}</span>
+          <br>
+          <span>Item key: {{item.key_}}</span>
+          <br>
+          <span>Item ID: {{item.itemid}}</span>
+          <br>
+          <span>Item description: {{item.description}}</span>
+          <br>
+        </div>
+        <div class="card-action">
+          <a (click)=showItemHistory(item.itemid)>Exibir valores</a>
+          <a (click)=showItemGraphic(item.itemid)>Exibir Grafico</a>
+        </div>
       </div>
     </div>
   </div>
