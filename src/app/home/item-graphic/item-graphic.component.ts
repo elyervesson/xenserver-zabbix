@@ -68,7 +68,38 @@ export class ItemGraphicComponent implements OnInit {
         x: function(d){return d.label;},
         y: function(d){return d.value;},
         staggerLabels: true,
-        tooltips: false,
+        tooltip: {
+          contentGenerator: function (e) {
+            debugger;
+            var series = e.series[0];
+            if (series.value === null) return;
+            
+            var rows = 
+              "<tr>" +
+                "<td class='key'>" + 'Horário da coleta: ' + "</td>" +
+                "<td class='x-value'>" + series.key + "</td>" + 
+              "</tr>" +
+              "<tr>" +
+                "<td class='key'>" + 'Valor coletado: ' + "</td>" +
+                "<td class='x-value'><strong>" + series.value + "</strong></td>" +
+              "</tr>";
+
+            var header = 
+              "<thead>" + 
+                "<tr>" +
+                  "<td class='legend-color-guide'><div style='background-color: " + series.color + ";'></div></td>" +
+                  "<td class='key'><strong>Valor atual</strong></td>" +
+                "</tr>" + 
+              "</thead>";
+              
+            return "<table>" +
+                header +
+                "<tbody>" + 
+                  rows + 
+                "</tbody>" +
+              "</table>";
+          } 
+        },
         showValues: true,
         duration: 500,
         xAxis: {
