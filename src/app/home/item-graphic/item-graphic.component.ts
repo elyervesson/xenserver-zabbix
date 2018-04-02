@@ -32,14 +32,26 @@ export class ItemGraphicComponent implements OnInit {
     this.range = 15;
   }
   
+  // OBS: Alterar o codigo do onInit para executar as atividades pesadas no backend
   ngOnInit() {
     this.itemInformation = {};
+
+    // Recuperação dos dados basicos de um item
     this.zabbixService.getItemInformation(this.itemId).subscribe( (information: any) => {
-      this.itemInformation = {name: information.result[0].name, units: information.result[0].units, description: information.result[0].description};
+      this.itemInformation = {
+        name: information.result[0].name, 
+        units: information.result[0].units, 
+        description: information.result[0].description, 
+        value_type: information.result[0].value_type
+      };
       
+      // Recuperação dos ultimos x valores de um item
       this.zabbixService.getItemHistory(this.itemId, this.hostId, this.range).subscribe( (data: any) => {
         data.result.reverse();
-        this.itemList = [{key: "Item: " + this.itemInformation.name, values: []}];
+        this.itemList = [{
+          key: "Item: " + this.itemInformation.name, 
+          values: []
+        }];
   
         data.result.forEach(medicao => {
           let time = new Date(medicao.clock*1000);
@@ -70,7 +82,7 @@ export class ItemGraphicComponent implements OnInit {
         staggerLabels: true,
         tooltip: {
           contentGenerator: function (e) {
-            debugger;
+
             var series = e.series[0];
             if (series.value === null) return;
             
