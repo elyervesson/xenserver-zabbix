@@ -12,8 +12,8 @@ import 'nvd3'
 import {NvD3Module} from "ng2-nvd3";
 
 import { AppComponent } from './app.component';
-import { ZabbixService } from './shared/zabbix.service';
-import { UserService } from './shared/user.service';
+import { ZabbixService } from './shared/services/zabbix.service';
+import { UserService } from './shared/services/user.service';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +27,7 @@ import { GroupInformationComponent } from './home/group-information/group-inform
 import { ItemsHostInformationComponent } from './home/items-host-information/items-host-information.component';
 import { ItemHistoryComponent } from './home/item-history/item-history.component';
 import { ItemGraphicComponent } from './home/item-graphic/item-graphic.component';
+import { EditUserDialogComponent } from './home/user-detail/edit-user-dialog/edit-user-dialog.component';
 
 
 @NgModule({
@@ -41,7 +42,10 @@ import { ItemGraphicComponent } from './home/item-graphic/item-graphic.component
     GroupInformationComponent,
     ItemsHostInformationComponent,
     ItemHistoryComponent,
-    ItemGraphicComponent
+    ItemGraphicComponent,
+
+    //Dialog
+    EditUserDialogComponent
   ],
   imports: [
     BrowserModule,

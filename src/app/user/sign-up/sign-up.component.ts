@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr'
-import { User } from '../../shared/user.model';
-import { UserService } from '../../shared/user.service';
+import { User } from '../../shared/models/user.model';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-sign-up',

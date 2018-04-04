@@ -11,7 +11,54 @@
           <br>
           <span>Logged On : {{userClaims.loggedOn}}</span>
         </div>
+        <div class="card-action">
+          <a (click)="showDialog = !showDialog">Alterar dados</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<app-edit-user-dialog [(visible)]="showDialog">
+
+  <div class="card-content white">
+      <div class="row">
+        
+        <form class="col s12 white" #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
+          <div class="row">
+            <div class="input-field col s6">
+              <input disabled type="text" name="userName" #userName="ngModel" [(ngModel)]="user.userName">
+              <label class="active">UserName</label>
+            </div>
+            <div class="input-field col s6">
+              <input class="validate" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required minlength="3">
+              <label class="active" [attr.data-error]="password.errors!=null?(password.errors.required?'Required field!':'Minimum 3 characters needed'):''">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input disabled type="text" name="email" #email="ngModel" [(ngModel)]="user.email">
+              <label class="active">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input type="text" name="firstName" #firstName="ngModel" [(ngModel)]="user.firstName">
+              <label class="active" >First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input type="text" name="lastName" #lastName="ngModel" [(ngModel)]="user.lastName">
+              <label class="active" >Last Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <button [disabled]="!userRegistrationForm.valid" class="btn-large btn-submit" type="submit">Submit</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+</app-edit-user-dialog>

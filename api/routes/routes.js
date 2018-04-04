@@ -30,4 +30,8 @@ module.exports = function(app) {
 	// Reculpera informações do usuario logado
 	app.route('/user/get-user-claims')
 		.get(userHandlers.loginRequired, userHandlers.get_user_claims);
+
+	// Altera dados basicos do usuario
+	app.route('/user/update')
+		.put(userHandlers.loginRequired, userHandlers.update_user);
 };

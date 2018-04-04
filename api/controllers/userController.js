@@ -8,22 +8,21 @@ var mongoose = require('mongoose'),
 exports.register = function(req, res) {
   var newUser = new User(req.body);
   newUser.hash_password = bcrypt.hashSync(req.body.password, 10);
-  newUser.save(function(err, user) {
-    if (err) {
-      return res.status(400).send({
-        message: err
-      });
-    } else {
-      user.hash_password = undefined;
-      return res.json(user);
-    }
+  newUser.save(
+    function(err, user) {
+      if (err) {
+        return res.status(400).send({
+          message: err
+        });
+      } else {
+        user.hash_password = undefined;
+        return res.json(user);
+      }
   });
 };
 
 exports.sign_in = function(req, res) {
-  User.findOne({
-    email: req.body.email
-  }, function(err, user) {
+  User.findOne({email: req.body.email}, function(err, user) {
     if (err) throw err;
 
     if (!user || !user.comparePassword(req.body.password)) {
@@ -36,6 +35,22 @@ exports.sign_in = function(req, res) {
 exports.get_user_claims = function(req, res) {
   return res.json(req.user);
 };
+
+exports.update_user = function(req, res) {
+  if (req.body.password != null) {
+    req.body.hash_password = bcrypt.hashSync(req.body.password, 10);
+  }
+
+  User.findOneAndUpdate({email: req.body.email}, {$set: req.body}, function(err, user){
+      if (err) {
+        return res.status(400).send({message: err});
+      } else {
+        user.hash_password = undefined;
+        user.Succeeded = true;
+        return res.json(user);
+      }
+    });
+}
 
 exports.loginRequired = function(req, res, next) {
   if (req.user) {

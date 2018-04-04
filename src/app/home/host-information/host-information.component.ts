@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ZabbixService } from './../../shared/zabbix.service';
+import { ZabbixService } from './../../shared/services/zabbix.service';
 
 @Component({
   selector: 'app-host-information',

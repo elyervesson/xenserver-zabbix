@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ZabbixService } from './../../shared/zabbix.service';
+import { ZabbixService } from './../../shared/services/zabbix.service';
 
 @Component({
   selector: 'app-group-information',
