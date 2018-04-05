@@ -29,7 +29,15 @@ exports.sign_in = function(req, res) {
       return res.status(401).json({ message: 'Authentication failed. Invalid user or password.' });
     }
 
-    const token = jwt.sign({ userName: user.userName, email: user.email, firstName: user.firstName, lastName: user.lastName }, 'RESTFULAPIs')
+    const token = jwt.sign({
+      data: {
+        userName: user.userName, 
+        email: user.email, 
+        firstName: user.firstName, 
+        lastName: user.lastName 
+      },
+      exp: (Date.now()/1000)+60*60*24*7,
+    }, 'RESTFULAPIs')
     res.header("token", token);
     return res.json({ Succeeded: true })
   });
@@ -51,7 +59,15 @@ exports.update_user = function(req, res) {
         user.hash_password = undefined;
         user.Succeeded = true;
 
-        const token = jwt.sign({ userName: user.userName, email: user.email, firstName: user.firstName, lastName: user.lastName }, 'RESTFULAPIs')
+        const token = jwt.sign({
+          data: {
+            userName: user.userName, 
+            email: user.email, 
+            firstName: user.firstName, 
+            lastName: user.lastName 
+          },
+          exp: (Date.now()/1000)+60*60*24*7,
+        }, 'RESTFULAPIs')
         res.header("token", token);
         return res.json(user);
       }

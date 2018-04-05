@@ -31,7 +31,7 @@ export class UserDetailComponent implements OnInit {
         firstName: data.firstName,
         lastName: data.lastName
       }
-      debugger;
+
       this.userClaims = data;
       this.userClaims.loggedOn = new Date(this.userClaims.iat * 1000);
     });
