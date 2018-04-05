@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router'
+import { Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 import { HomeComponent } from './home/home.component';
@@ -13,8 +13,8 @@ import { ItemHistoryComponent } from './home/item-history/item-history.component
 import { ItemGraphicComponent } from './home/item-graphic/item-graphic.component';
 
 export const appRoutes: Routes = [
-    { 
-        path: 'home', component: HomeComponent, 
+    {
+        path: 'home', component: HomeComponent,
         children: [
             { path: '', redirectTo: 'user-detail', pathMatch: 'full' },
             { path: 'user-detail', component: UserDetailComponent },
@@ -24,7 +24,7 @@ export const appRoutes: Routes = [
             { path: 'item-history/:itemid/:hostid', component: ItemHistoryComponent },
             { path: 'item-graphic/:itemid/:hostid', component: ItemGraphicComponent }
         ],
-        canActivate:[AuthGuard] 
+        canActivate: [AuthGuard]
     },
     {
         path: 'signup', component: UserComponent,
@@ -34,6 +34,5 @@ export const appRoutes: Routes = [
         path: 'login', component: UserComponent,
         children: [{ path: '', component: SignInComponent }]
     },
-    { path : '', redirectTo:'/login', pathMatch : 'full'}
-    
+    { path : '', redirectTo: '/login', pathMatch : 'full'}
 ];

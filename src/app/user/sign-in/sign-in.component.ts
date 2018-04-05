@@ -9,17 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  isLoginError : boolean = false;
-  constructor(private userService : UserService,private router : Router) { }
+  isLoginError = false;
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  OnSubmit(email, password){
-     this.userService.userAuthentication(email, password).subscribe((data : any)=>{
+  OnSubmit(email, password) {
+     this.userService.userAuthentication(email, password).subscribe((data: any) => {
       this.router.navigate(['/home']);
     },
-    (err : HttpErrorResponse)=>{
+    (err: HttpErrorResponse) => {
       this.isLoginError = true;
     });
   }

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { ToastrService } from 'ngx-toastr'
+import { ToastrService } from 'ngx-toastr';
 import { User } from './../../shared/models/user.model';
 import { UserService } from './../../shared/services/user.service';
 
@@ -14,7 +14,7 @@ import { UserService } from './../../shared/services/user.service';
 export class UserDetailComponent implements OnInit {
   userClaims: any;
   user: User;
-  fakePassword: string = "******";
+  fakePassword = '******';
 
   showDialog: false;
 
@@ -30,7 +30,7 @@ export class UserDetailComponent implements OnInit {
         email: data.email,
         firstName: data.firstName,
         lastName: data.lastName
-      }
+      };
 
       this.userClaims = data;
       this.userClaims.loggedOn = new Date(this.userClaims.iat * 1000);

@@ -2,14 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router'
+import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
-//d3 import
+// d3 import
 import 'd3';
-import 'nvd3'
-import {NvD3Module} from "ng2-nvd3";
+import 'nvd3';
+import {NvD3Module} from 'ng2-nvd3';
 
 import { AppComponent } from './app.component';
 import { ZabbixService } from './shared/services/zabbix.service';
@@ -44,7 +44,7 @@ import { EditUserDialogComponent } from './home/user-detail/edit-user-dialog/edi
     ItemHistoryComponent,
     ItemGraphicComponent,
 
-    //Dialog
+    // Dialog
     EditUserDialogComponent
   ],
   imports: [
@@ -57,7 +57,7 @@ import { EditUserDialogComponent } from './home/user-detail/edit-user-dialog/edi
     // 3d import
     NvD3Module
   ],
-  providers: [UserService, ZabbixService, AuthGuard, {provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true}], 
+  providers: [UserService, ZabbixService, AuthGuard, {provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

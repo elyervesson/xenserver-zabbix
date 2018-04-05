@@ -16,10 +16,10 @@ export class HostInformationComponent implements OnInit {
   ngOnInit() {
     this.zabbixService.getHostList().subscribe( (data: any) => {
       this.hostList = data.result;
-    })
+    });
   }
 
-  showItems(hostId){
+  showItems(hostId) {
     this.router.navigate(['/home/items-host-information/' + hostId]);
   }
 }

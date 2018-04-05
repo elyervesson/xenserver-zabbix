@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ZabbixService } from './../../shared/services/zabbix.service';
 
@@ -26,12 +26,12 @@ export class ItemHistoryComponent implements OnInit {
         this.itemList = data.result;
 
         this.itemList.forEach(medicao => {
-          medicao.time = new Date(parseInt(medicao.clock)*1000) 
+          medicao.time = new Date(parseInt(medicao.clock, 10) * 1000);
         });
-    })
+    });
   }
 
   back() {
-    this.router.navigate(['/home/items-host-information/'+ this.hostId]);
+    this.router.navigate(['/home/items-host-information/' + this.hostId]);
   }
 }

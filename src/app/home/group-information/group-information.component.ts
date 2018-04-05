@@ -15,7 +15,7 @@ export class GroupInformationComponent implements OnInit {
   ngOnInit() {
     this.zabbixService.getGroupList().subscribe( (data: any) => {
       this.groupList = data.result;
-    })
+    });
   }
 
 }
