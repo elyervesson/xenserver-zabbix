@@ -9,7 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 // d3 import
 import 'd3';
 import 'nvd3';
-import {NvD3Module} from 'ng2-nvd3';
+import { NvD3Module } from 'ng2-nvd3';
 
 import { AppComponent } from './app.component';
 import { ZabbixService } from './shared/services/zabbix.service';

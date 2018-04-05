@@ -38,7 +38,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   OnSubmit(form: NgForm) {
-    if (form.value.password == this.fakePassword) {
+    if (form.value.password === this.fakePassword) {
       delete form.value.password;
     }
 
@@ -47,6 +47,8 @@ export class UserDetailComponent implements OnInit {
       .subscribe((data: any) => {
         this.toastr.success('User updated successfully');
         this.showDialog = false;
+
+        this.userClaims = data;
       },
         (err: HttpErrorResponse) => {
           this.toastr.error(err.error.message.errmsg);

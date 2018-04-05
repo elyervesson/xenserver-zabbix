@@ -30,12 +30,10 @@ exports.sign_in = function(req, res) {
     }
 
     const token = jwt.sign({
-      data: {
-        userName: user.userName, 
-        email: user.email, 
-        firstName: user.firstName, 
-        lastName: user.lastName 
-      },
+      userName: user.userName,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
       exp: (Date.now()/1000)+60*60*24*7,
     }, 'RESTFULAPIs')
     res.header("token", token);
@@ -52,7 +50,7 @@ exports.update_user = function(req, res) {
     req.body.hash_password = bcrypt.hashSync(req.body.password, 10);
   }
 
-  User.findOneAndUpdate({email: req.body.email}, {$set: req.body}, function(err, user){
+  User.findOneAndUpdate({email: req.body.email}, {$set: req.body}, {new: true}, function(err, user){
       if (err) {
         return res.status(400).send({message: err});
       } else {
@@ -60,12 +58,10 @@ exports.update_user = function(req, res) {
         user.Succeeded = true;
 
         const token = jwt.sign({
-          data: {
-            userName: user.userName, 
-            email: user.email, 
-            firstName: user.firstName, 
-            lastName: user.lastName 
-          },
+          userName: user.userName,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
           exp: (Date.now()/1000)+60*60*24*7,
         }, 'RESTFULAPIs')
         res.header("token", token);

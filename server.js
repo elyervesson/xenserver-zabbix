@@ -29,7 +29,8 @@ app.use(function(req, res, next) {
       if (err) req.user = undefined;
       else {
         delete decode.iat;
-        const token = jsonwebtoken.sign({ data: decode, exp: (Date.now()/1000)+60*60*24*7 } , 'RESTFULAPIs');
+        decode.exp = (Date.now()/1000) + 60*60*24*7;
+        const token = jsonwebtoken.sign(decode , 'RESTFULAPIs');
 
         const decoded = jsonwebtoken.decode(token);
         req.user = decoded
