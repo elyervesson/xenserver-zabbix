@@ -27,7 +27,15 @@ app.use(function(req, res, next) {
   if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
     jsonwebtoken.verify(req.headers.authorization.split(' ')[1], 'RESTFULAPIs', function(err, decode) {
       if (err) req.user = undefined;
-      else req.user = decode;
+      else {
+        delete decode.iat;
+        const token = jsonwebtoken.sign(decode , 'RESTFULAPIs');
+
+        const decoded = jsonwebtoken.decode(token);
+        req.user = decoded
+
+        res.header("token", token);
+      }
 
       next();
     });
@@ -44,12 +52,6 @@ routes(app);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
-
-/*
-  app.use(function(req, res) {
-    res.status(404).send({ url: req.originalUrl + ' not found' })
-  });
-*/
 
 app.listen(port, () => console.log(`Running on localhost:${port}`));
 

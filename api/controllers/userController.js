@@ -28,7 +28,10 @@ exports.sign_in = function(req, res) {
     if (!user || !user.comparePassword(req.body.password)) {
       return res.status(401).json({ message: 'Authentication failed. Invalid user or password.' });
     }
-    return res.json({ token: jwt.sign({userName: user.userName, email: user.email, fullName: user.firstName +" "+ user.lastName }, 'RESTFULAPIs') });
+
+    const token = jwt.sign({ userName: user.userName, email: user.email, firstName: user.firstName, lastName: user.lastName }, 'RESTFULAPIs')
+    res.header("token", token);
+    return res.json({ Succeeded: true })
   });
 };
 
@@ -47,6 +50,9 @@ exports.update_user = function(req, res) {
       } else {
         user.hash_password = undefined;
         user.Succeeded = true;
+
+        const token = jwt.sign({ userName: user.userName, email: user.email, firstName: user.firstName, lastName: user.lastName }, 'RESTFULAPIs')
+        res.header("token", token);
         return res.json(user);
       }
     });

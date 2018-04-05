@@ -10,15 +10,7 @@ export class UserService {
   readonly rootUrl = 'http://localhost:3000';
   constructor(private http: HttpClient) { }
 
-  registerUser(user: User) {
-    const body: User = {
-      userName: user.userName,
-      password: user.password,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName
-    }
-    
+  registerUser(user: User) {    
     const reqHeader = new HttpHeaders({
       'No-Auth':'True'
     });

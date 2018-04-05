@@ -24,17 +24,14 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUserClaims().subscribe((data: any) => {
-      const fistName = data.fullName.substr(0, data.fullName.indexOf(' '));
-      const lastName = data.fullName.substr(data.fullName.indexOf(' ') + 1);
-
       this.user = {
         userName: data.userName,
         password: this.fakePassword,
         email: data.email,
-        firstName: fistName,
-        lastName: lastName
+        firstName: data.firstName,
+        lastName: data.lastName
       }
-
+      debugger;
       this.userClaims = data;
       this.userClaims.loggedOn = new Date(this.userClaims.iat * 1000);
     });
