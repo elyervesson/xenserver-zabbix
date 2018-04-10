@@ -23,6 +23,7 @@
 
   <div class="card-content white">
       <div class="row">
+        <h5>Alteração de dados</h5>
         
         <form class="col s12 white" #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
           <div class="row">
@@ -53,7 +54,7 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <button [disabled]="!userRegistrationForm.valid" class="btn-large btn-submit" type="submit">Submit</button>
+              <button [disabled]="!userRegistrationForm.valid" class="btn-small red" type="submit">Alterar</button>
             </div>
           </div>
         </form>

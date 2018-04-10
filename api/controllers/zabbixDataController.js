@@ -35,18 +35,18 @@ function itemInformation(req, res) {
 
 /* GET ultimos 10 valores de um item. */
 function itemHistory(req, res) {
-  itemInformationRequest(req.query.itemid).then((response) => {
+  itemInformationRequest(req.query.itemid).then((queryResponse) => {
     const requestBody = {
       jsonrpc: '2.0',
       method: 'history.get',
       params: {
         output: 'extend',
-        history: response.body.result[0].value_type,
+        history: queryResponse.body.result[0].value_type,
         itemids: req.query.itemid,
         hostids: req.query.hostid,
         sortfield: 'clock',
         sortorder: 'DESC',
-        limit: parseInt(req.query.limit),
+        limit: parseInt(req.query.limit, 10),
       },
       auth,
       id: 1,
