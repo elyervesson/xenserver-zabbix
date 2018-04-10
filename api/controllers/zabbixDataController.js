@@ -1,7 +1,4 @@
-const express = require('express');
 const request = require('superagent');
-
-const router = express.Router();
 
 const auth = 'da56d80c34c9a1c121c5c5442e490220';
 const zabbixApi = 'http://localhost/zabbix/api_jsonrpc.php';

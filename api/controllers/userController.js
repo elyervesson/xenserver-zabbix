@@ -32,7 +32,7 @@ function signIn(req, res) {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
-      exp: (Date.now() / 1000) + 60 * 60 * 24 * 7,
+      exp: (Date.now() / 1000) + (60 * 60 * 24 * 7),
     }, 'RESTFULAPIs');
     res.header('token', token);
     return res.json({ Succeeded: true });
@@ -48,23 +48,29 @@ function updateUser(req, res) {
     req.body.hash_password = bcrypt.hashSync(req.body.password, 10);
   }
 
-  User.findOneAndUpdate({ email: req.body.email }, { $set: req.body }, { new: true }, (err, user) => {
-    if (err) {
-      return res.status(400).send({ message: err });
-    }
-    user.hash_password = undefined;
-    user.Succeeded = true;
+  User.findOneAndUpdate(
+    { email: req.body.email },
+    { $set: req.body },
+    { new: true },
+    (err, user) => {
+      if (err) {
+        return res.status(400).send({ message: err });
+      }
+      user.hash_password = undefined;
+      user.Succeeded = true;
 
-    const token = jwt.sign({
-      userName: user.userName,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      exp: (Date.now() / 1000) + 60 * 60 * 24 * 7,
-    }, 'RESTFULAPIs');
-    res.header('token', token);
-    return res.json(user);
-  });
+      const token = jwt.sign({
+        userName: user.userName,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        exp: (Date.now() / 1000) + (60 * 60 * 24 * 7),
+      }, 'RESTFULAPIs');
+
+      res.header('token', token);
+      return res.json(user);
+    },
+  );
 }
 
 function loginRequired(req, res, next) {

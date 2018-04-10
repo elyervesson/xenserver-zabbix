@@ -28,7 +28,7 @@ app.use((req, res, next) => {
       if (err) req.user = undefined;
       else {
         delete decode.iat;
-        decode.exp = (Date.now() / 1000) + 60 * 60 * 24 * 7;
+        decode.exp = (Date.now() / 1000) + (60 * 60 * 24 * 7);
         const token = jsonwebtoken.sign(decode, 'RESTFULAPIs');
 
         const decoded = jsonwebtoken.decode(token);
@@ -52,6 +52,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-app.listen(port, () => console.log(`Running on localhost:${port}`));
+app.listen(port);
 
 module.exports = app;
