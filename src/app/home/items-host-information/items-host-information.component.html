@@ -24,7 +24,7 @@
         </div>
         <div class="card-action">
           <a (click)=showItemHistory(item.itemid)>Exibir valores</a>
-          <a (click)=showItemGraphic(item.itemid)>Exibir Grafico</a>
+          <a (click)=showItemGraphic(item.itemid) *ngIf="item.value_type == 0 || item.value_type == 3">Exibir Grafico</a>
         </div>
       </div>
     </div>
