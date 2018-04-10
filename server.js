@@ -1,13 +1,12 @@
-'use strict';
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const jsonwebtoken = require('jsonwebtoken');
+const routes = require('./api/routes/routes');
 
-var express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000,
-  path = require('path'),
-  mongoose = require('mongoose'),
-  User = require('./api/models/userModel'),
-  bodyParser = require('body-parser'),
-  jsonwebtoken = require("jsonwebtoken");
+const port = process.env.PORT || 3000;
+const app = express();
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/Zabbixdb');
@@ -19,23 +18,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-    jsonwebtoken.verify(req.headers.authorization.split(' ')[1], 'RESTFULAPIs', function(err, decode) {
+    jsonwebtoken.verify(req.headers.authorization.split(' ')[1], 'RESTFULAPIs', (err, decode) => {
       if (err) req.user = undefined;
       else {
         delete decode.iat;
-        decode.exp = (Date.now()/1000) + 60*60*24*7;
-        const token = jsonwebtoken.sign(decode , 'RESTFULAPIs');
+        decode.exp = (Date.now() / 1000) + 60 * 60 * 24 * 7;
+        const token = jsonwebtoken.sign(decode, 'RESTFULAPIs');
 
         const decoded = jsonwebtoken.decode(token);
-        req.user = decoded
+        req.user = decoded;
 
-        res.header("token", token);
+        res.header('token', token);
       }
 
       next();
@@ -46,8 +45,7 @@ app.use(function(req, res, next) {
   }
 });
 
-var routes = require('./api/routes/routes');
-routes(app);
+routes.appRoutes(app);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
